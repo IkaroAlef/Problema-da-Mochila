@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Objeto {
 	private int id ;
+	private double valor;
 	private static AtomicInteger count = new AtomicInteger (0); //serve para auto-incrementar o id.
 	private double peso;
 	
@@ -15,6 +16,14 @@ public class Objeto {
 		this.id = id;
 	}
 
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
 	public double getPeso() {
 		return peso;
 	}
@@ -23,9 +32,10 @@ public class Objeto {
 		this.peso = peso;
 	}
 	
-	public Objeto(double peso){
+	public Objeto(double peso, double valor){
 			this.setId(count.incrementAndGet());
 			this.setPeso(peso);
+			this.setValor(valor);
 	}
 
 	/*public Objeto(int id, double peso) throws Exception{
