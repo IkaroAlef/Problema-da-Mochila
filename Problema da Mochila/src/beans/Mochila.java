@@ -30,13 +30,12 @@ public class Mochila {
 	
 	public void insereObj(Objeto obj){
 		objetos.add(obj);
+		this.pesoAtual += obj.getPeso();
 	}
 	
 	public void removeUltimoObj(){
 		objetos.remove(objetos.size()-1);
 	}
-	
-	public int divisao(int i, int j){return i/j;};
 	
 	public static void main(String[] args) {
 		Mochila mochila = new Mochila(100);
@@ -57,6 +56,5 @@ public class Mochila {
 			i++;
 		}
 		
-		System.out.println(mochila.divisao(10, 4));
 	}
 }
