@@ -3,21 +3,19 @@ package beans;
 class Knapsack {
 
     public static void main(String[] args) throws Exception {
-        int val[] = {10, 40, 30, 50};
-        int wt[] = {5, 4, 6, 3};
-        int W = 10;
+        int val[] = {10, 40, 30, 50, 10, 20};//vetor de valores
+        int wt[] = {5, 4, 6, 3, 1, 1};//vetor de pesos
+        int W = 10;//capacidade da mochila
 
-        System.out.println(knapsack(val, wt, W));
+        System.out.println(knapsack(val, wt, W)); //imprime valor total que compõe a mochila
     }
 
     public static int knapsack(int val[], int wt[], int W) {
 
-        //Get the total number of items. 
-        //Could be wt.length or val.length. Doesn't matter
+        //N representa o numero total de itens dispostos
         int N = wt.length; 
 
-        //Create a matrix. 
-        //Items are in rows and weight at in columns +1 on each side
+        //criar matriz
         int[][] V = new int[N + 1][W + 1]; 
 
 
@@ -58,7 +56,7 @@ class Knapsack {
 
         }
 
-        //Printing the matrix
+        //imprimir a matriz 
         for (int[] rows : V) {
             for (int col : rows) {
 
