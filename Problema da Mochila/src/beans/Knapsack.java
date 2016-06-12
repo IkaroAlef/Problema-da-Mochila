@@ -4,7 +4,7 @@ class Knapsack {
 
     public static void main(String[] args) throws Exception {
         int val[] = {10, 40, 30, 50, 10, 20};//vetor de valores
-        int wt[] = {5, 4, 6, 3, 1, 1};//vetor de pesos
+        int wt[] = {1, 4, 6, 3, 1, 5};//vetor de pesos
         int W = 10;//capacidade da mochila
 
         System.out.println(knapsack(val, wt, W)); //imprime valor total que compõe a mochila
