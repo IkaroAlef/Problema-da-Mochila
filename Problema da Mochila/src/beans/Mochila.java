@@ -36,27 +36,39 @@ public class Mochila {
 	public void removeUltimoObj(){
 		objetos.remove(objetos.size()-1);
 	}
-	/*
-	public double knapsack(ArrayList<Objeto>itens, double C){
-
-		int n = itens.size();
-		itens[2][N + 1] = itens [1][N] ;
-		itens 0 ← NIL;
-		criar(maxTab[N+1][C+1]); //Inicialize com 0 toda a linha 0 e também a coluna 0
-		para i ← 1 até N faça
-		para j ← 1 até C faça
-		atual
-		if (itens[i]. peso ≤ j)  // se o item i cabe na mochila
-			maxTab[i][j] ← max(maxTab[i − 1][j];
-		else maxTab[i][j] ← maxTab[i − 1][j];
-		return maxTab[N][C]
-	}
-	*/
+	
+	public static int knapsack(int val[], int wt[], int W) {
+       int N = wt.length; 
+       int[][] V = new int[N + 1][W + 1]; 
+       for (int col = 0; col <= W; col++) {
+            V[0][col] = 0;
+        }
+        for (int row = 0; row <= N; row++) {
+            V[row][0] = 0;
+        }
+        for (int item=1;item<=N;item++){
+            for (int weight=1;weight<=W;weight++){
+                if (wt[item-1]<=weight)
+                    V[item][weight]=Math.max (val[item-1]+V[item-1][weight-wt[item-1]], V[item-1][weight]);
+                else 
+                    V[item][weight]=V[item-1][weight];
+            }
+        }
+        //imprimir a matriz 
+        for (int[] rows : V) {
+            for (int col : rows) {
+                System.out.format("%5d", col);
+            }
+            System.out.println();
+        }
+        return V[N][W];
+    }
+	
 	public static void main(String[] args) {
 		Mochila mochila = new Mochila(100);
 		ArrayList<Objeto> objetos = new ArrayList<Objeto>(Arrays.asList( //array com obejtos a serem inseridos
 				new Objeto(10, 2),
-				new Objeto(1, 6),
+	 			new Objeto(1, 6),
 				new Objeto(16, 8),
 				new Objeto(20, 3),
 				new Objeto(50,10),

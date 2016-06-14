@@ -1,12 +1,10 @@
 package beans;
 
 class Knapsack {
-
     public static void main(String[] args) throws Exception {
         int val[] = {10, 40, 30, 50, 10, 20};//vetor de valores
         int wt[] = {1, 4, 6, 3, 1, 5};//vetor de pesos
         int W = 10;//capacidade da mochila
-
         System.out.println(knapsack(val, wt, W)); //imprime valor total que compõe a mochila
     }
 
@@ -18,28 +16,22 @@ class Knapsack {
         //criar matriz
         int[][] V = new int[N + 1][W + 1]; 
 
-
-        //What if the knapsack's capacity is 0 - Set
-        //all columns at row 0 to be 0
+        //Se a capacidade da mochila é 0, defina todas as colunas da linha 0 para o valor 
         for (int col = 0; col <= W; col++) {
             V[0][col] = 0;
         }
-
-        //What if there are no items at home.  
-        //Fill the first row with 0
+        //Se não há itens na casa - What if there are no items at home. (supoe q um ladrão vai roubar uma casa, porém não há itens para serem roubados)  
+        //Preencha a primeira linha com 0 - Fill the first row with 0
         for (int row = 0; row <= N; row++) {
             V[row][0] = 0;
         }
-
         for (int item=1;item<=N;item++){
-
-            //Let's fill the values row by row
+            //Vamos preencher os valores linha a linha - Let's fill the values row by row
             for (int weight=1;weight<=W;weight++){
-
-                //Is the current items weight less
-                //than or equal to running weight
+                //Se o peso do item atual é menor ou igual ao peso da mochila atual 
+            	//Is the current items weight less than or equal to running weight
                 if (wt[item-1]<=weight){
-
+//Dado um peso, checa se o valor do item atual somado com o valor do item que poderíamos dispor com o peso restante é maior que o valor sem o item atual  
 //Given a weight, check if the value of the current 
 //item + value of the item that we could afford 
 //with the remaining weight is greater than the value
@@ -47,26 +39,21 @@ class Knapsack {
                     V[item][weight]=Math.max (val[item-1]+V[item-1][weight-wt[item-1]], V[item-1][weight]);
                 }
                 else {
+//Se o peso do item atual é maior que o peso em execução, apenas carregue o valor sem o item atual.                	
 //If the current item's weight is more than the
 //running weight, just carry forward the value
 //without the current item
                     V[item][weight]=V[item-1][weight];
                 }
             }
-
         }
-
         //imprimir a matriz 
         for (int[] rows : V) {
             for (int col : rows) {
-
                 System.out.format("%5d", col);
             }
             System.out.println();
         }
-
         return V[N][W];
-
     }
-
 }
